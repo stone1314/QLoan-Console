@@ -1,0 +1,131 @@
+<div class="list-group dr-form" ng-init="init()">
+    <h3 class="list-group-item-heading box-shadowbottom">
+        批量管理
+    </h3>
+
+    <div class="list-group-item single-channel-quary">
+        <div class="form-inline">
+            <div class="div-display-box">
+                <div class="form-group"><p>&nbsp;</p></div>
+            </div>
+            <div class="div-display-box" has-permission="qyj_batchmgr_query">
+                <div class="form-group">
+                    <select class="form-control page-select"
+                            ng-model="viewModel.query.appId">
+                        <option value="">-- APP ID --</option>
+                        <option ng-repeat="item in viewModel.dropDown.appIdList" value="{{item.dataCode}}">
+                            {{item.dataName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="批量名称" ng-model="viewModel.query.jobName">
+                </div>
+                <div class="form-group">
+                    <select class="form-control page-select"
+                            ng-model="viewModel.query.jobStatus">
+                        <option value="">-- 状态 --</option>
+                        <option ng-repeat="item in viewModel.dropDown.jobStatusList" value="{{item.dataCode}}">
+                            {{item.dataName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control page-select"
+                            ng-model="viewModel.query.lastExecuteResult">
+                        <option value="">-- 执行结果 --</option>
+                        <option ng-repeat="item in viewModel.dropDown.lastExecuteResultList" value="{{item.dataCode}}">
+                            {{item.dataName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-default" ng-click="getJobList()">查询</button>
+                </div>
+            </div>
+
+            <div class="form-group float-lg-right">
+                <button class="btn btn-primary btn-plr-15" ng-click="openJobModal('add','')"
+                        has-permission="qyj_batchmgr_add">
+                    <i class="fa fa-plus"></i>
+                    新建批量
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <div class="list-group-item single-channel-body">
+        <br>
+        <div class="dr-tb-container">
+            <table class="table table-striped table-condensed">
+                <thead>
+                <tr>
+                    <th style="width:10%;">批量名称</th>
+                    <th style="width:10%;">APP ID</th>
+                    <th style="width:30%;">执行计划</th>
+                    <th style="width:13%;">上次执行时间</th>
+                    <th style="width:10%;">执行结果</th>
+                    <th style="width:7%;">状态</th>
+                    <th style="width:20%;">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in tableData.result">
+                    <td>{{item.jobName}}</td>
+                    <td>{{item.appId | filterAppIdMapping}}</td>
+                    <td>{{item.jobSchedule | filterJobScheduleMapping }}</td>
+                    <td>{{item.lastExecuteTime | date: "yyyy-MM-dd HH:mm"}}</td>
+                    <td>{{item.lastExecuteResult | filterLastExecuteResultMapping}}</td>
+                    <td>
+                        <i ng-if="item.jobStatus == '1'" class="fa fa-circle-thin" id="btn-start"></i>
+                        <i ng-if="item.jobStatus == '2'" class="fa fa-circle-thin" id="btn-enable"></i>
+                        {{item.jobStatus | filterJobStatusMapping }}
+                    </td>
+                    <td class="text-center">
+                        <button type="button"
+                                class="btn btn-secondary"
+                                has-permission="qyj_batchmgr_detail"
+                                ng-click="openJobModal('view',item.id)">
+                            <i class="fa fa-search-plus" aria-hidden="true"></i>查看
+                        </button>
+                        <button type="button"
+                                class="btn btn-secondary"
+                                has-permission="qyj_batchmgr_run"
+                                ng-confirm="runJob(item.id)"
+                                ng-confirm-message="是否运行 {{item.jobName}} 批量?">
+                            <i class="fa fa-play-circle-o" aria-hidden="true"></i>运行
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle"
+                                    data-toggle="dropdown"><i class="icon-icon-more" aria-hidden="true"></i>更多
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li has-permission="qyj_batchmgr_edit">
+                                    <a href
+                                       ng-click="openJobModal('edit', item.id)">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>编辑
+                                    </a>
+                                </li>
+                                <li has-permission="qyj_batchmgr_delete">
+                                    <a href
+                                       ng-confirm="deleteJob(item.id)"
+                                       ng-confirm-message="删除操作不可恢复，确认要删除{{item.jobName}}数据项吗?">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>删除
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="7" class="text-center text-bg">
+                        <div class="text-right" page-control record="tableData" evname="dr.reloadPagination"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

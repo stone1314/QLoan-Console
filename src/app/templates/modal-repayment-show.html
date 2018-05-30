@@ -1,0 +1,67 @@
+<div class="dr-form">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">还款计划</h4>
+    </div>
+    <div class="modal-body">
+        <div class="list-group-item single-channel-body">
+            <div class="dr-tb-container  overflow-x-y " style="margin:0 0 0 0">
+                <div class="table-130-500">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="width:5%;">还款状态</th>
+                            <th style="width:5%;">当前期数</th>
+                            <th style="width:5%;">合同金额</th>
+                            <th style="width:5%;">还款时间</th>
+                            <th style="width:5%;">正常还款的合同余额</th>
+                            <th style="width:5%;">本金</th>
+                            <th style="width:5%;">利息</th>
+                            <th style="width:5%;">本金+利息</th>
+                            <th style="width:5%;">服务费</th>
+                            <th style="width:5%;">本期还款宽限期</th>
+                            <th style="width:5%;">下一个还款日</th>
+                            <th style="width:5%;">未还本金</th>
+                            <th style="width:5%;">未还利息</th>
+                            <th style="width:5%;">罚息</th>
+                            <th style="width:5%;">还款计划展示金额</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- ngRepeat: item in tableData.result -->
+                        <tr class="ng-scope" ng-repeat="item in viewModel.records">
+                            <!-- <tr ng-repeat="item in tableData.result" class="ng-scope">-->
+                            <td> {{item.repayStatusId|repayStatusFilter}}</td>
+                            <td>{{item.repayTerm}}</td>
+                            <td>{{item.repayContractAmt}}</td>
+                            <td> {{item.repayDate}}</td>
+                            <td> {{item.repayContractBalance}}</td>
+                            <td> {{item.repayPrinciple}}</td>
+                            <td> {{item.repayRateIncome}}</td>
+                            <td> {{item.repayTotalAmt}}</td>
+                            <td> {{item.repayServiceFeeAmt}}</td>
+                            <td> {{item.loanPaytimes}}</td>
+                            <td> {{item.repayEndDateNext}}</td>
+                            <td> {{item.noPrincipal}}</td>
+                            <td> {{item.noInterest}}</td>
+                            <td> {{item.noDueInterest}}</td>
+                            <td> {{item.showAppAmt}}</td>
+
+                        </tr><!-- end ngRepeat: item in tableData.result -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="  dr-btn-bar " style="padding: 0 0 0 0">
+            <button class="btn btn-secondary btn-plr-35" type="button" ng-click="cancel()">关闭</button>
+        </div>
+    </div>
+
+</div>

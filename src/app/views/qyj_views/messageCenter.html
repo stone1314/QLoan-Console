@@ -1,0 +1,25 @@
+<div ng-controller="MessageCenterController">
+        <div ui-view="" class="ng-scope">
+            <div class="list-group dr-form ng-scope" ng-init="init()">
+                <h3 class="list-group-item-heading box-shadowbottom">
+                    消息中心
+                </h3>
+                <div class="list-group-item single-channel-quary">
+                    <div class="panel panel-link">
+                        <div class="panel-body dr_baseInfo">
+                            <label class="col-xs-3 control-label" style="text-align: right">消息内容：</label>
+                            <div class="col-xs-6 text-center">
+                                <textarea rows="8" cols="50"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-plr-35" type="button" ng-confirm="sendMessage()"  ng-confirm-message="确认发送该信息？"  >发送</button>
+                    </div>
+                    <div>
+                <!-- 模态框（Modal） -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>

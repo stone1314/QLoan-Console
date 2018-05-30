@@ -1,0 +1,56 @@
+<div class="row white-bg dashboard-header" ng-view="datatables" style="background-color: white">
+    <div>
+        <h3 class="div-title">客户建议</h3>
+    </div>
+    <div class="div-buttons">
+        <form role="form" class="form-inline ng-pristine ng-valid">
+            <div class="form-group">
+                <label class="sr-only">搜索</label>
+                <input type="text" ng-model="domain.DISPLAY_NAME" placeholder="姓名" class="form-control ms-width-150">
+                <input type="text" ng-model="domain.DISPLAY_NAME" placeholder="手机号" class="form-control ms-width-150">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info" ng-click="query()">查 询 </button>
+                <button class="btn btn-default" ng-click="reset()">重 置 </button>
+                <button class="btn btn-warning" ng-click="upload()">客户建议详情</button>
+            </div>
+            <div class="dr-tb-container" style="margin-left: 0px;">
+                <div>
+                    <table class="table text-muted table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th><span class='datatables-check-all'>全选</span></th>
+                            <th tb-sort="">编号</th>
+                            <th >姓名</th>
+                            <th>手机号</th>
+                            <th>建议内容</th>
+                            <th>创建时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td ><input type="checkbox"></td>
+                            <td >221</td>
+                            <td >肖家栋</td>
+                            <td >18602700225</td>
+                            <td >test1111</td>
+                            <td >2016-11-21</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="6" class="text-center text-bg">
+                                <div class="text-right" page-control record="Model.userInfoList" evname="dr.userPagination"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+

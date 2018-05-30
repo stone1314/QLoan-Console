@@ -1,0 +1,70 @@
+<div class="dr-form" style="width: 800px"  ng-init="init()">
+    <div class="modal-body">
+        <div class="modal-content">
+            <form name="application" novalidate="novalidate" ng-submit="save()" class="form-horizontal">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row dashboard-header">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">分类</label>
+                            <div class="col-sm-4">
+                                <select chosen
+                                        class="wd-200"
+                                        allow-single-deselect="true"
+                                        ng-model="model.CATEGORY"
+                                        data-placeholder="请选择分类"
+                                        disable-search="true"
+                                        required
+                                        ng-options="s.dataCode as s.dataName for s in dropDown.categoryList">
+                                    <option value="" selected="selected">请选择分类</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">COBRA申请状态</label>
+                            <div class="col-sm-4">
+                                <select chosen
+                                        class="wd-200"
+                                        allow-single-deselect="true"
+                                        ng-model="model.COBRA_APP_STATUS"
+                                        data-placeholder="请选择COBRA申请状态"
+                                        disable-search="true"
+                                        required
+                                        ng-options="s.dataCode as s.dataName for s in dropDown.cobraApplyStatusList">
+                                    <option value="">请选择COBRA申请状态</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">申请状态</label>
+                            <div class="col-sm-9">
+                                <div  class="fl-l mr-20 wd-180" id="divStatus">
+                                    <label class="control-label" ng-repeat="d in dropDown.applyStateList">
+                                        <input type="checkbox" class="i-checks" name="app_status" value="{{d.dataCode}}">
+                                        <span title="{{d.dataCode}}">{{d.dataName}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">说明</label>
+                            <div class="col-sm-9">
+                                <textarea rows="5" class="form-control" ng-model="model.DESCRIPTION" placeholder="说明"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default" ng-click="save()">保存映射信息</button>
+                    <button type="reset" class="btn btn-default" ng-click="reset()">重置</button>
+                    <button type="button" class="btn btn-default" ng-click="close()">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

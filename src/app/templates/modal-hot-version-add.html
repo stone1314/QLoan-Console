@@ -1,0 +1,107 @@
+<div class="dr-form" ng-init="init()">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">添加构建版本</h4>
+    </div>
+    <div class="modal-body modal-box">
+        <form class="form-horizontal dr-form" role="form" name="basicForm" novalidate>
+            <div class="panel panel-link">
+                <div class="panel-body dr_baseInfo">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">版本号：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" placeholder="请输入版本号"
+                                   ng-model="viewModel.postData.appVersion" maxlength="50" required/>
+                        </div>
+                    </div>
+
+                    <!--包地址start-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">包地址：</label>
+                        <div class="col-sm-5">
+                            <input class="form-control hash-code"
+                                   type="text"
+                                   placeholder="请输入包地址"
+                                   ng-model="viewModel.downloadUrlZip"
+                                   ng-readonly = "true"
+                                   required="">
+                            <label style="color:red;font-weight:normal;font-size:12px;letter-spacing:2px;">
+                                文件应小于50M/限zip格式
+                            </label>
+                        </div>
+                        <label class="col-sm-3" style="margin-left:40px;padding-left:35px;">
+                            <div class="hot-update-btn"
+                                 ngf-select="true"
+                                 ngf-change="uploadFiles($files, $file)"
+                                 ng-model="viewModel.postData.downloadURL"
+                                 name="file"
+                                 ng-disabled="viewModel.uploading"
+                                 ngf-accept="'.zip'">{{viewModel.uploading ? viewModel.uploadingProgress : '上传'}}</div>
+                        </label>
+                    </div>
+                    <!--包地址end-->
+
+                    <!--重置start-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">包Hash值：</label>
+                        <div class="col-sm-5">
+                            <input class="form-control hash-code" type="text"
+                                   ng-readonly = "true"  placeholder="请输入包Hash值"
+                                   ng-model="viewModel.postData.packetHashValue" maxlength="50" required/>
+                        </div>
+                        <label class="col-sm-3" style="margin-left:40px;padding-left:35px;">
+                            <div class="hot-update-btn" ng-click="resetHashCode()">重置</div>
+                        </label>
+                    </div>
+                    <!--重置end-->
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">deploymentKey：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text"
+                                   ng-readonly = "true" placeholder="请输入deploymentKey"
+                                   ng-model="viewModel.postData.deploymentKey" maxlength="50" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">状态：</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" ng-model="viewModel.postData.isAvailable">
+                                <option value="">--请选状态--</option>
+                                <option ng-repeat="item in viewModel.statusList"
+                                        ng-selected="viewModel.postData.isAvailable==item.code"
+                                        value="{{item.code}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">label：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" placeholder="请输入标签"
+                                   ng-model="viewModel.postData.label" maxlength="50" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">描述：</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control msg_textarea" rows="3" maxlength="400"
+                                      placeholder="该输入描述内容"
+                                      ng-model="viewModel.postData.description" required="">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <div>
+                        <button class="btn btn-primary btn-plr-35" type="button" ng-click="ok()">添加</button>
+                        <button class="btn btn-secondary btn-plr-35" type="button" ng-click="cancel()">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

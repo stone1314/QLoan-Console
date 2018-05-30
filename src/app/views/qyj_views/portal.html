@@ -1,0 +1,145 @@
+<div class="dr-form" ng-init="initPage()">
+   <div class="dr-tb-header">
+      <div class="col col-sm-8">仪表盘</div>
+   </div>
+   <div class="dr-tb-container">
+       <div class="row-group">
+            <div class="real-time">
+                <div class="real-iclass">
+                    <i class="real-time-ico"></i>关键数据指标
+                </div>
+
+                <div class="dr-buttonSelect">
+                    <button class="btn btnSelect"
+                            ng-click="changeSelectDay(1);"
+                            ng-class="{true:'active'}[viewModel.overview.selectDay==1]">昨天
+                    </button>
+                    <button class="btn btnSelect"
+                            ng-click="changeSelectDay(7);"
+                            ng-class="{true:'active'}[viewModel.overview.selectDay==7]">过去7天
+                    </button>
+                    <button class="btn btnSelect"
+                            ng-click="changeSelectDay(30);"
+                            ng-class="{true:'active'}[viewModel.overview.selectDay==30]">过去30天
+                    </button>
+                </div>
+
+            </div>
+            <div class="row" ng-if="viewModel.viewShow">
+                  <div class="stats-group" ng-repeat="item in viewModel.viewDataList track by $index">
+                        <div class="stats-item"  ng-class=" 'stats'+($index+1)">
+                            <h1>{{item.value}}</h1>
+                            <h5>{{item.name}}</h5>
+                        </div>
+                  </div>
+            </div>
+          <div class="row " ng-if="!viewModel.viewShow">
+                <div class="stats-view">
+                    <h1 style="text-align: center; line-height: 100px" >{{viewModel.showText}}</h1>
+                </div>
+          </div>
+      </div>
+
+      <div class="row-group">
+         <div class="real-time real-time-search" >
+             <div class="real-iclass">
+                <i class="real-time-ico"></i>数据统计
+             </div>
+             <div class="pull-right" style="margin-right:15px">
+                 <date-range-picker min-date="viewModel.overview.startDate" max-date="viewModel.overview.endDate"
+                                    on-ok="viewModel.overview.searchStatisticData()"/>
+             </div>
+         </div>
+         <div class="row">
+            <div ng-if="viewModel.chat1.dataShow"
+                  e-chart e-data="chat1Option" style="height:330px;">
+            </div>
+             <div ng-if="!viewModel.chat1.dataShow" class="dr-dashboard-none">
+                 {{viewModel.chat1.textShow}}
+             </div>
+         </div>
+      </div>
+
+       <!--渠道/应用市场对比 开始-->
+       <div class="row-group" style="position: relative">
+           <div class="row" style="margin-top:20px;">
+               <div class="real-iclass mgr-left">
+                   <i class="real-time-ico"></i>渠道/应用市场对比
+                   <p class="time-period">{{viewModel.chat2.startDate| date: 'yyyy/MM/dd'}}-{{viewModel.chat2.endDate| date: 'yyyy/MM/dd'}}</p>
+               </div>
+               <div class="dr-dashboard-seach">
+                   <div class="pull-right dr-last">
+                       <date-range-picker min-date="viewModel.chat2.startDate" max-date="viewModel.chat2.endDate"
+                                          on-ok="viewModel.chat2.changeDatePicker()"/>
+                   </div>
+                   <div class="pull-right">
+                     <span uib-dropdown>
+                         <isteven-multi-select
+                                 class="search-channel"
+                                 input-model="viewModel.chat2.detailChannel"
+                                 output-model="viewModel.chat2.detailChannelSelect"
+                                 button-class="btnClass"
+                                 item-label="name"
+                                 search-property="name"
+                                 button-text="btnName2"
+                                 disable-property="disabled"
+                                 tick-property="selected"
+                                 translation="localLang"
+                                 max-height="250px"
+                                 helper-elements="all none filter"
+                                 is-disabled="viewModel.chat2.dataTypeSelect==0"
+                                 on-item-click="chat2Seach(false)"
+                                 on-select-all="chat2Seach(false)"
+                                 on-select-none="chat2Seach(false)"
+                         >
+                         </isteven-multi-select>
+                     </span>
+                   </div>
+                   <div class="pull-right">
+                     <span uib-dropdown>
+                         <isteven-multi-select
+                                 class="search-channel"
+                                 input-model="viewModel.chat2.dataType"
+                                 output-model="viewModel.chat2.dataTypeSelect"
+                                 button-class="btnClass"
+                                 item-label="dataName"
+                                 search-property="dataName"
+                                 button-text="btnName1"
+                                 disable-property="disabled"
+                                 tick-property="selected"
+                                 translation="localLang"
+                                 helper-elements="all none filter"
+                                 on-item-click="viewModel.chat2.seachDataType()"
+                                 on-select-all="viewModel.chat2.seachDataType()"
+                                 on-select-none="viewModel.chat2.seachDataType()"
+                         >
+                         </isteven-multi-select>
+                     </span>
+                   </div>
+               </div>
+           </div>
+           <!--清除浮动，防止高度崩塌-->
+           <div style="clear:both; height:0; overflow:hidden"></div>
+           <div class="row" style="padding-bottom:10px;">
+                <div ng-if="viewModel.chat2.dataShow"
+                     e-chart e-data="chat2Option" style="height:520px;">
+                </div>
+                <div ng-if="!viewModel.chat2.dataShow" class="dr-dashboard-none">
+                    {{viewModel.chat2.textShow}}
+                </div>
+           </div>
+           <div class="dr-dashboard-loading" ng-if="viewModel.chat2.loading">
+               <div class="loader">
+                   <div class="loader-inner pacman">
+                       <div></div>
+                       <div></div>
+                       <div></div>
+                       <div></div>
+                       <div></div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <!--渠道/应用市场对比 结束-->
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="modal-content" style="width: 750px;">
+    <form name="application" novalidate="novalidate" ng-submit="save()" class="form-horizontal ng-pristine ng-valid">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+            <h4 class="modal-title ng-binding">查看身份信息</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row dashboard-header">
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-3">
+                                <label class="control-label readonly ng-binding">{{resultData.name}}</label>
+                            </div>
+                            <label class="col-sm-3 control-label">是否完成身份认证</label>
+                            <div class="col-sm-4">
+                                <label class="control-label readonly ng-binding text-left">{{resultData.isComplete==true ?"是":"否" }}</label>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">证件类型</label>
+                            <div class="col-sm-3">
+                                <label class="control-label readonly ng-binding">{{resultData.idType | idtypeFilter }}</label>
+                            </div>
+                            <label class="col-sm-3 control-label">证件号码</label>
+                            <div class="col-sm-4">
+                                <label class="control-label readonly ng-binding">{{resultData.idNo }}</label>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">认证手机号</label>
+                            <div class="col-sm-3">
+                                <label class="control-label readonly ng-binding">{{resultData.certifyMobile }}</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="cancel()">关闭</button>
+        </div>
+    </form>
+</div>

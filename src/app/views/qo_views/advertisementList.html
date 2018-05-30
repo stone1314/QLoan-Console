@@ -1,0 +1,78 @@
+<div class="row white-bg dashboard-header" ng-view="datatables" style="background-color: white" ng-controller="adController">
+    <div>
+        <h3 class="div-title">广告管理</h3>
+    </div>
+    <div class="div-buttons">
+        <form role="form" class="form-inline ng-pristine ng-valid">
+            <div class="form-group">
+                <label class="sr-only">广告名称</label>
+                <input type="text" ng-model="domain.NAME" placeholder="广告名称" class="form-control ms-width-150">
+            </div>
+            <div class="form-group">
+                <label class="sr-only">广告类型</label>
+                <input type="text" ng-model="domain.AD_TYPE" placeholder="广告类型" class="form-control ms-width-150">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info" ng-click="query()">查 询 </button>
+                <button class="btn btn-default" ng-click="reset()">重 置 </button>
+                <button class="btn btn-default" ng-click="additional()">添 加 </button>
+                <button class="btn btn-default" ng-click="modify()">修 改 </button>
+                <button class="btn btn-default" ng-click="active()">启用/禁用 </button>
+                <button class="btn btn-danger" ng-click="remove()">删 除 </button>
+                <button class="btn btn-warning" ng-click="saveSort()">保存排序 </button>
+            </div>
+            <div class="dr-tb-container" style="margin-left: 0px;">
+                <div>
+                    <table class="table text-muted table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th><span class='datatables-check-all'>全选</span></th>
+                            <th tb-sort="">名称</th>
+                            <th >类型</th>
+                            <th>排序</th>
+                            <th>是否默认</th>
+                            <th>状态</th>
+                            <th>创建时间</th>
+
+                            <th>排序</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="checkbox-inline"></td>
+                            <td>测试</td>·
+                            <td>图片</td>
+                            <td>1</td>
+                            <td>非默认</td>
+                            <td><span class="label label-success">已启用</span></td>
+                            <td>2017-7-19</td>
+                            <td ><i class="fa fa-bars drag"></i></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="checkbox-inline"></td>
+                            <td>测试</td>
+                            <td>图片</td>
+                            <td>2</td>
+                            <td>默认</td>
+                            <td><span class="label label-danger">已禁用</span></td>
+                            <td>2017-7-19</td>
+                            <td ><i class="fa fa-bars drag"></i></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="8" class="text-center text-bg">
+                                <div class="text-right" page-control record="Model.userInfoList" evname="dr.userPagination"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+

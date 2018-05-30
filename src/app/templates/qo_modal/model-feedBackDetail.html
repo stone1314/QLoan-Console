@@ -1,0 +1,49 @@
+<div class="modal-content">
+    <form name="application" novalidate="novalidate"   class="form-horizontal ng-pristine ng-valid">
+        <div class="modal-header">
+            <h4 class="modal-title ng-binding">意见反馈详情</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row dashboard-header">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">意见编号</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{Model.id}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">客户经理</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{Model.name}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">部门　　</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{Model.departmentName}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">城市　　</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{Model.city}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">意见反馈</label>
+                    <div class="col-sm-9">
+                        <textarea rows="5" class="form-control ng-valid" ng-model="Model.content" placeholder="说明" readonly="readonly" style="resize:none"></textarea>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">创建时间</label>
+                    <div class="col-sm-10">
+                        <label class="control-label ng-binding">{{Model.createdTime| date:'yyyy-MM-dd'}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="cancel()">关闭</button>
+        </div>
+    </form>
+</div>

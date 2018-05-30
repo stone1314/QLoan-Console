@@ -1,0 +1,97 @@
+<div class="dr-form" ng-init="init()">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button>
+        <h4 class="modal-title" id="myModalLabel">新增Banner图片</h4>
+    </div>
+    <div class="modal-body modal-box">
+        <form class="form-horizontal dr-form" role="form">
+            <div class="panel panel-link">
+                <div class="panel-body dr_baseInfo">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>标题：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <input class="form-control"
+                                   type="text" placeholder="请输入标题" ng-model="formData.name"
+                                   maxlength="50" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>描述：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <textarea class="form-control" ng-model="formData.description" style="width:298px !important" rows="3" cols="1" placeholder="请输入描述"></textarea>
+                            <p>
+                                <span style="color:#FF9059;">{{viewModel.fontCount}}</span>/100
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>位置：</label>
+                        <div class="col-sm-5"  style="padding-left: 1px !important;">
+                            <input class="form-control"
+                                   type="text" placeholder="请输入位置"  ng-model="formData.position"
+                                   maxlength="50"
+                                   required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>状态：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <select class="form-control" required="" ng-model="viewModel.selectItem">
+                                <option value="">--请选择--</option>
+                                <option  ng-repeat="item in isActives" value="{{item.code}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--广告缩略图-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>广告缩略图：</label>
+                        <div class="col-sm-5"  style="padding-left: 1px !important;">
+                            <input class="form-control"
+                                   type="text"
+                                   placeholder="请上传banner缩略图"
+                                   ng-model="viewModel.smallImage1"
+                                   maxlength="120"
+                                   required="">
+                        </div>
+                        <label class="col-sm-3" style="margin-left:34px;text-align:left;padding-left: 21px;">
+                            <div class="upload-new" ngf-select="uploadFiles(viewModel.smallImage1,'small')" style="padding-top:4px;"
+                                  ng-model="viewModel.smallImage1"
+                                  name="fileOne"
+                                  ngf-pattern="'image/*'"
+                                  ngf-accept="'image/*'" >上传</div>
+                            <a class="btn-upload btn-uploading" href="{{viewModel.smallFull}}" target="_blank" style="font-size:14px;color:#ffffff;text-decoration:none;font-weight: normal;">预览</a>
+                        </label>
+                    </div>
+
+                    <!--广告图-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>广告图：</label>
+                        <div class="col-sm-5"  style="padding-left: 1px !important;">
+                            <input class="form-control"
+                                   type="text"
+                                   placeholder="请上传banner图"
+                                   ng-model="viewModel.bigImage1"
+                                   maxlength="120"
+                                   required="">
+                        </div>
+                        <label class="col-sm-3" style="margin-left:34px;text-align:left;padding-left: 21px;">
+                            <div class="upload-new" ngf-select="uploadFiles(viewModel.bigImage1,'big')" style="padding-top:4px;"
+                                  ng-model="viewModel.bigImage1"
+                                  name="fileTwo"
+                                  ngf-pattern="'image/*'"
+                                 ngf-accept="'image/*'" >上传</div>
+                            <a class="btn-upload btn-uploading" href="{{viewModel.bigFull}}" target="_blank" style="font-size:14px;color:#ffffff;text-decoration:none;font-weight: normal;">预览</a>
+                        </label>
+                    </div>
+                    <!--广告图end-->
+
+                </div>
+            </div>
+            <div class="panel-footer text-center" style="padding: 10px 100px 15px 15px;">
+                <button class="btn btn-primary btn-plr-35" ng-click="ok()" type="button">保存</button>
+                <button class="btn btn-secondary btn-plr-35" type="button" ng-click="cancel()">关闭</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="dr-form" ng-init="init()">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button>
+        <h4 class="modal-title" id="myModalLabel">编辑字典项</h4>
+    </div>
+    <div class="modal-body modal-box">
+        <form class="form-horizontal dr-form" role="form">
+            <div class="panel panel-link">
+                <div class="panel-body dr_baseInfo">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>id：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <input class="form-control" type="text" placeholder="id" ng-model="formData.id" required="" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>名称：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <input class="form-control" type="text" placeholder="名称" ng-model="formData.name" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>键值：</label>
+                        <div class="col-sm-5"  style="padding-left: 1px !important;">
+                            <input class="form-control" type="text" placeholder="键值"  ng-model="formData.value" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;">扩展键值：</label>
+                        <div class="col-sm-5"  style="padding-left: 1px !important;">
+                            <input class="form-control" type="text" placeholder="扩展键值"  ng-model="formData.valueExt" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>字典类型：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <select class="form-control" required="" ng-model="formData.type">
+                                <option value="">--请选择字典类型--</option>
+                                <option  ng-repeat="item in dicTypes"
+                                         ng-selected="formData.type==item.code"
+                                         value="{{item.code}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>字典描述：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <textarea class="form-control msg_textarea" rows="3" maxlength="500"
+                                      placeholder="字典描述"
+                                      ng-model="formData.description" required="">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>创建时间：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <input class="form-control"
+                                   type="text" ng-model="formData.createTime"
+                                   maxlength="50" required="" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="text-align:right !important; padding-right:1px;"><span style="color:red">*</span>更新时间：</label>
+                        <div class="col-sm-5" style="padding-left: 1px !important;">
+                            <input class="form-control"
+                                   type="text" ng-model="formData.updateTime"
+                                   maxlength="50" required="" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer text-center" style="padding: 10px 100px 15px 15px;">
+                <button type="button" class="btn btn-primary btn-plr-35"
+                        ng-click="ok()">保存
+                </button>
+                <button type="button" class="btn btn-default btn-plr-35"
+                        ng-click="cancel()">取消
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

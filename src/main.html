@@ -1,0 +1,84 @@
+<div class="main-wrapper" id="wrapper" ng-controller="HomeController" ng-init="initPage();">
+    <div class="app" id="app">
+        <header class="header main-header">
+            <div class="header-block header-block-nav">
+                <ul class="nav-profile">
+                    <li class="profile dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <div class="img"
+                                 style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&amp;s=40')">
+                            </div>
+                            <span class="name">
+                                {{viewModel.userName}}
+                            </span> </a>
+                        <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <a class="dropdown-item" ng-click="Logout()" >
+                                <i class="fa fa-power-off icon"></i> Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <aside class="sidebar">
+            <div class="sidebar-container">
+                <div class="sidebar-header">
+                    <div class="brand">
+                        <div class="text-center">
+                            QKPIEC管控平台
+                            <!--<img src="./image/logo-name-white.png">-->
+                        </div>
+                    </div>
+                </div>
+                <nav class="menu">
+                    <div id="sidebar-menu-left">
+                        <span class="one" ng-click="toggle('qone')"></span>
+                        <span class="two" ng-click="toggle('qyj')"></span>
+                    </div>
+
+                    <ul class="nav metismenu" id="sidebar-menu">
+                        <li ng-repeat="item in menus"
+                            ui-sref-active="submenuActive"
+                            has-permission="{{item.permission}}"
+                            ng-class="{true:'active'}[item.isNavCollapsed]">
+                            <a
+                                    ng-if="item.url!=''"
+                                    ui-state="item.url"
+                                    ng-class="{true:'has-arrow'}[item.url=='']"
+                                    aria-expanded="true">
+                                <i class="{{item.icon}}"></i>{{item.title}}
+                            </a>
+                            <a
+                                    ng-if="item.url==''"
+                                    ng-class="{true:'has-arrow'}[item.url=='']"
+                                    href="javascript:void(0);"
+                                    ng-click="item.isNavCollapsed = !item.isNavCollapsed"
+                                    aria-expanded="true">
+                                <i class="{{item.icon}}"></i>{{item.title}}
+                            </a>
+                            <ul aria-expanded="true">
+                                <li ui-sref-active="submenuActive" ng-repeat="children in item.childrens"
+                                    has-permission="{{children.permission}}">
+                                    <a ng-if="children.url!=''"
+                                       ui-state="children.url">{{children.title}}</a>
+                                    <a ng-if="children.url==''">{{children.title}}</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+
+        <!-- Main Content Start -->
+        <div id="page-wrapper">
+            <div ui-view></div>
+        </div>
+
+        <!-- Main Content End -->
+    </div>
+</div>

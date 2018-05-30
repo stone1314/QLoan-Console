@@ -1,0 +1,111 @@
+<div class="dr-form" style="width: 950px"  ng-init="init()">
+    <div class="modal-body modal-box">
+        <div class="modal-content">
+            <form name="application" novalidate="novalidate" ng-submit="save()" class="form-horizontal">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{model.title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row dashboard-header">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="model.NAME" required placeholder="姓名" />
+                            </div>
+                            <label class="col-sm-2 control-label">员工编号</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="model.CODE" required placeholder="员工编号" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">邮箱</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="model.EMAIL" required placeholder="邮箱" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">入职时间</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="sr-only">入职时间</label>
+                                    <!--<input type="text" class="form-control laydate-icon" ng-model="domain.JOIN_TIME" input-date placeholder="入职时间" style="width:200px" />-->
+                                    <div class="col-xs-9">
+                                        <div class="form-inline">
+                                            <div class="form-group m-0 dr-date-group">
+                                                <i class="icon-icon-schedule"></i>
+                                                <input
+                                                        type="text"
+                                                        class="form-control dr-date"
+                                                        ng-click="open()"
+                                                        uib-datepicker-popup="yyyy-MM-dd"
+                                                        format="yyyy-MM-dd HH:mm:ss"
+                                                        ng-model="model.INJOINTIME"
+                                                        ng-disabled="viewModel.pageType === 'view'"
+                                                        is-open="popup.opened" placeholder="入职时间"  />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label">离职时间</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="sr-only">入职时间</label>
+                                    <!--<input type="text" class="form-control laydate-icon" ng-model="domain.JOIN_TIME" input-date placeholder="入职时间" style="width:200px" />-->
+                                    <div class="col-xs-9">
+                                        <div class="form-inline">
+                                            <div class="form-group m-0 dr-date-group">
+                                                <i class="icon-icon-schedule"></i>
+                                                <input
+                                                        type="text"
+                                                        class="form-control dr-date"
+                                                        ng-click="open2()"
+                                                        uib-datepicker-popup="yyyy-MM-dd"
+                                                        format="yyyy-MM-dd HH:mm:ss"
+                                                        ng-model="model.QUITTIME"
+                                                        ng-disabled="viewModel.pageType === 'view'"
+                                                        is-open="popup2.opened" placeholder="离职时间"  />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">身份证号</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="model.ID_NO" required placeholder="身份证号" maxlength="18" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">部门名称</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="model.DEPARTMENT_NAME" required placeholder="部门名称" />
+                            </div>
+                            <label class="col-sm-2 control-label">部门代码</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="model.DEPARTMENT_CODE" required placeholder="部门代码" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">说明</label>
+                            <div class="col-sm-10">
+                                <textarea rows="5" class="form-control" ng-model="model.DESCRIPTION" placeholder="说明" maxlength="200"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" onclick="save()">保存HRM用户信息</button>
+                        <button type="reset" class="btn btn-default" ng-click="reset()">重置</button>
+                        <button type="button" class="btn btn-default" ng-click="close()">关闭</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

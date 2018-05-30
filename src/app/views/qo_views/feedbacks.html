@@ -1,0 +1,51 @@
+<div class="list-group dr-form ng-scope" ng-init="init()">
+
+    <h3 class="list-group-item-heading box-shadowbottom">
+        意见反馈
+    </h3>
+
+    <div class="list-group-item single-channel-quary">
+        <div class="form-inline">
+
+            <div class="form-group">
+                <input type="text" class="form-control " style="width: 200px"
+                       placeholder="客户经理" ng-model="Model.name">
+            </div>
+            <div class="form-group">
+                <select class="form-control page-select ng-pristine ng-valid ng-empty ng-touched dropdown-size"
+                        ng-model="Model.city">
+                    <option value="" selected="selected">请选择申请城市</option>
+                    <option ng-repeat="item in Model.Cities" value="{{item.cityName}}">
+                        {{item.cityName}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control page-select" style="width: 200px"
+                        ng-model="Model.department">
+                    <option value="" selected="selected">请选择部门</option>
+                    <option ng-repeat="item in Model.departmentes" value="{{item.departmentCode}}">
+                        {{item.departmentName}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control  " style="width: 200px"
+                       placeholder="内容" ng-model="Model.content">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="query()">查 询</button>
+                <button class="btn btn-default" ng-click="reset()">重 置</button>
+                <button class="btn btn-warning" ng-click="skip()">意见反馈详情</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group-item single-channel-body">
+        <div class="dr-tb-container">
+            <table model="setTableOptions" id="feedback" angular-table     class="table table-hover "></table>
+        </div>
+    </div>
+
+    <!-- 模态框（Modal） -->
+</div>

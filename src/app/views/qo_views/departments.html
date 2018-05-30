@@ -1,0 +1,38 @@
+
+
+<div class="list-group dr-form ng-scope" ng-init="init()">
+
+    <h3 class="list-group-item-heading box-shadowbottom">
+        部门管理
+    </h3>
+
+    <div class="list-group-item single-channel-quary">
+        <div class="form-inline">
+
+            <div class="form-group">
+                <input type="text" class="form-control " style="width: 200px"
+                       placeholder="部门名称" ng-model="Model.Name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control  " style="width: 200px"
+                       placeholder="部门代码" ng-model="Model.Code">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="query()">查 询</button>
+                <button class="btn btn-default" ng-click="reset()">重 置</button>
+                <button class="btn btn-default" ng-click="add()">添 加 </button>
+                <button class="btn btn-default" ng-click="update()">修 改</button>
+                <button class="btn btn-default" ng-click="upstate()">启用/禁用</button>
+                <button class="btn btn-warning" ng-click="remove()">删 除</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group-item single-channel-body">
+        <div class="dr-tb-container   ">
+        <table model="setTableOptions" id="ngDepment" angular-table
+               class="table table-hover "></table>
+        </div>
+    </div>
+    <!-- 模态框（Modal） -->
+</div>

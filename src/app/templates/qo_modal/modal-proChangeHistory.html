@@ -1,0 +1,36 @@
+<div class="modal-content" ng-init="init()">
+    <form name="application" novalidate="novalidate" class="form-horizontal ng-pristine ng-valid">
+        <div class="modal-header dialog-header-confirm">
+            <button type="button" class="close" ng-click="cancel()">×</button>
+            <h4 class="modal-title ng-binding">产品回退历史</h4>
+        </div>
+        <div class="modal-body ng-binding">
+            <div class="row dashboard-header">
+                <div class="ng-scope" ng-repeat="product in model.productHistorys">
+                    <div class="form-group ">
+                        <div class="col-sm-2 control-label">预申请号</div>
+                        <div class="col-sm-4 control-label">
+                            {{product.productName}}
+                        </div>
+
+                        <div class="col-sm-2 control-label">
+                            申请金额：
+                        </div>
+                        <div class="col-sm-2 control-label">
+                            {{product.preAppLoanApplyAmt}}
+                        </div>
+                        <div class="col-sm-2 control-label">
+                            {{product.createdTime|date: 'yyyy-MM-dd'}}
+                        </div>
+
+                    </div>
+                    <div class="hr-line-dashed" id="line"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
+        </div>
+    </form>
+</div>

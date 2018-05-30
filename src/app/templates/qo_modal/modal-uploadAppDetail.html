@@ -1,0 +1,28 @@
+<div class="modal-content">
+    <form name="application" novalidate="novalidate"  class="form-horizontal ng-pristine ng-valid">
+        <div class="modal-header">
+            <h4 class="modal-title ng-binding">应用程序包上传</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row dashboard-header">
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">选择应用程序包</label>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="允许的文件（qone/ksd/qloan.apk/ipa/plist）" readonly="readonly" id="file-name">
+                            <span class="input-group-btn">
+                                        <input type="file" name="file"   id="file" style="opacity: 0;height: 34px;width: 54px;position: absolute;z-index: 9999;cursor: pointer;">
+                                        <button class="btn btn-default" type="button">浏览</button>
+                                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="upload()">上传</button>
+            <button type="button" class="btn btn-default" ng-click="cancel()">关闭</button>
+        </div>
+    </form>
+</div>

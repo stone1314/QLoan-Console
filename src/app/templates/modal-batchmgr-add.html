@@ -1,0 +1,241 @@
+<div class="dr-form">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">编辑基本信息</h4>
+    </div>
+    <div class="modal-body modal-box">
+        <form class="form-horizontal dr-form" role="form">
+            <div class="panel panel-link">
+                <div class="panel-body dr_baseInfo">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">批量名称<span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <input class="form-control" type="text" placeholder="请输入批量名称"
+                                   ng-disabled="viewModel.pageType === 'view'"
+                                   ng-model="viewModel.postData.jobName" maxlength="50" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">APP ID<span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <select class="form-control" ng-model="viewModel.postData.appId"
+                                    ng-disabled="viewModel.pageType === 'view'" required>
+                                <option value="">--请选择--</option>
+                                <option ng-repeat="item in viewModel.dropDown.appIdList"
+                                        ng-selected="viewModel.postData.appId==item.dataCode"
+                                        value="{{item.dataCode}}">
+                                    {{item.dataName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">执行计划<span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <select class="form-control" ng-model="viewModel.postData.jobSchedule.type"
+                                    ng-disabled="viewModel.pageType === 'view'" required>
+                                <option value="">--请选择--</option>
+                                <option ng-repeat="item in viewModel.dropDown.jobScheduleTypeList"
+                                        ng-selected="viewModel.postData.jobSchedule.type==item.dataCode"
+                                        value="{{item.dataCode}}">
+                                    {{item.dataName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 以下是执行计划详情 -->
+                    <!-- 一次，开始日期 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"></label>
+                        <div class="col-sm-5 form-inline text-nowrap">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>开始日期：</td>
+                                    <td>
+                                        <div class="form-group m-0 dr-date-group">
+                                            <i class="icon-icon-schedule"></i>
+                                            <input
+                                                    type="text"
+                                                    class="form-control dr-date"
+                                                    ng-click="open()"
+                                                    uib-datepicker-popup="yyyy-MM-dd"
+                                                    format="yyyy-MM-dd HH:mm:ss"
+                                                    ng-model="viewModel.postData.jobSchedule.startDateTime"
+                                                    ng-disabled="viewModel.pageType === 'view'"
+                                                    is-open="popup.opened"/>
+                                        </div>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <div uib-timepicker ng-model="viewModel.postData.jobSchedule.startDateTime"
+                                             show-meridian="false"
+                                             show-spinners="false"
+                                             ng-disabled="viewModel.pageType === 'view'">
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- 重复执行间隔：按天 -->
+                    <div ng-if="viewModel.postData.jobSchedule.type === '2'">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-5 form-inline text-nowrap">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>每</td>
+                                        <td>
+                                            <input type="text"
+                                                   style="width: 40px; margin-left: 10px; margin-right: 10px;"
+                                                   ng-model="viewModel.postData.jobSchedule.repeatInterval"
+                                                   maxlength="3" required/>
+                                        </td>
+                                        <td>天重复一次</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 重复执行间隔：按周 -->
+                    <div ng-if="viewModel.postData.jobSchedule.type === '3'">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-5 form-inline text-nowrap">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>每</td>
+                                        <td>
+                                            <input type="text"
+                                                   style="width: 40px; margin-left: 10px; margin-right: 10px;"
+                                                   ng-model="viewModel.postData.jobSchedule.repeatInterval"
+                                                   maxlength="3"
+                                                   ng-disabled="viewModel.pageType === 'view'" required/>
+                                        </td>
+                                        <td>周重复一次</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 每周，ng-if 替换为 ng-show/ng-hide，否则 output-model 输出异常 -->
+                    <div ng-show="viewModel.postData.jobSchedule.type === '3'">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8" style="display: inline-flex;">
+                                <label style="font-weight: normal">
+                                    每周：
+                                </label>
+                                <div isteven-multi-select
+                                     is-disabled="viewModel.pageType === 'view'"
+                                     input-model="weekListDynamic"
+                                     output-model="weekListSelected"
+                                     output-properties="value"
+                                     button-label="name"
+                                     item-label="name"
+                                     on-close="onIstevenClose()"
+                                     tick-property="selected"
+                                     translation="localLang">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 每月，ng-if 替换为 ng-show/ng-hide，否则 output-model 输出异常 -->
+                    <div ng-show="viewModel.postData.jobSchedule.type === '4'">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8" style="display: inline-flex;">
+                                <label style="font-weight: normal">
+                                    每月：
+                                </label>
+                                <div isteven-multi-select
+                                     is-disabled="viewModel.pageType === 'view'"
+                                     input-model="monthListDynamic"
+                                     output-model="monthListSelected"
+                                     output-properties="value selected"
+                                     search-property="name"
+                                     min-search-length="1"
+                                     max-height="250px"
+                                     button-label="name"
+                                     item-label="name"
+                                     on-close="onIstevenClose()"
+                                     tick-property="selected"
+                                     translation="localLang">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="viewModel.postData.jobSchedule.type === '4'">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8" style="display: inline-flex;">
+                                <label style="font-weight: normal">
+                                    第几天：
+                                </label>
+                                <div isteven-multi-select
+                                     is-disabled="viewModel.pageType === 'view'"
+                                     input-model="dayOfMonthListDynamic"
+                                     output-model="dayOfMonthListSelected"
+                                     output-properties="value"
+                                     search-property="name"
+                                     min-search-length="1"
+                                     max-height="250px"
+                                     max-labels="10"
+                                     button-label="name"
+                                     item-label="name"
+                                     on-close="onIstevenClose()"
+                                     tick-property="selected"
+                                     translation="localLang">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">批量状态<span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <label class="radio-inline">
+                                <input type="radio" name="jobStatus"
+                                       ng-disabled="viewModel.pageType === 'view'"
+                                       ng-model="viewModel.postData.jobStatus" value="1">有效
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="jobStatus"
+                                       ng-disabled="viewModel.pageType === 'view'"
+                                       ng-model="viewModel.postData.jobStatus" value="2">无效
+                            </label>
+                            <!--
+                            <select class="form-control" ng-model="viewModel.postData.jobStatus"
+                                    ng-disabled="viewModel.pageType === 'view'" required>
+                                <option value="">--请选择--</option>
+                                <option ng-repeat="item in viewModel.dropDown.jobStatusList"
+                                        ng-selected="viewModel.postData.jobStatus==item.dataCode"
+                                        value="{{item.dataCode}}">
+                                    {{item.dataName}}
+                                </option>
+                            </select>
+                            -->
+                        </div>
+                    </div>
+                </div>
+                <p>{{ viewModel.postData.jobSchedule.startDateTime | date: "yyyy-MM-dd HH:mm:ss.sss" }}</p>
+                <p>{{ scope.weekListDynamic }}</p>
+                <div class="panel-footer text-center">
+                    <div ng-if="viewModel.pageType === 'view'">
+                        <button class="btn btn-secondary btn-plr-35" type="button" ng-click="cancel()">关闭</button>
+                    </div>
+                    <div ng-if="viewModel.pageType !== 'view'">
+                        <button class="btn btn-primary btn-plr-35" type="button" ng-click="ok()">保存</button>
+                        <button class="btn btn-secondary btn-plr-35" type="button" ng-click="cancel()">取消</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

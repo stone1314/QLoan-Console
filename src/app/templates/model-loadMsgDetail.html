@@ -1,0 +1,76 @@
+<div class="modal-content">
+    <form name="application" novalidate="novalidate"   class="form-horizontal ng-pristine ng-valid">
+        <div class="modal-header">
+            <h4 class="modal-title">借款消息详情</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row dashboard-header">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">编号：</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.id}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">用户ID：</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.msgReceiver}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">客户名称：</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.custName}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">标题：</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.msgTitle}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">展示合同编号：</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.contractDisplayNo}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">进件号：</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.qcAppCode}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">预申请号：</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.preAppCode}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">系统合同编号：</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.contractSysNo}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">状态：</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.msgStatus | msgStatusFilter}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">创建时间：</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.createTime| date: 'yyyy-MM-dd'}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">消息内容：</label>
+                    <div class="col-sm-9">
+                        <textarea rows="5" class="form-control ng-valid" ng-model="Model.msgContent" placeholder="说明" readonly="readonly" style="resize:none"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="cancel()">关闭</button>
+        </div>
+    </form>
+</div>

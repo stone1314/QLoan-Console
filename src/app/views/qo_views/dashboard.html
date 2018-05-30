@@ -1,0 +1,78 @@
+<div class="list-group dr-form ng-scope" ng-init="init()">
+    <h3 class="list-group-item-heading box-shadowbottom">
+        仪表盘
+    </h3>
+
+    <div class="list-group-item single-channel-body">
+        <div class="animated ng-scope">
+            <div class="mlr-20-20 ng-scope">
+                <div class="col-sm-3">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>预申请通过</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="margin-0">{{Model.preAppOk}}</h1>
+                            <small>&nbsp;</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>已提交到申请</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="margin-0">{{Model.preAppSubmited}}</h1>
+
+                            <small>&nbsp;</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>申请中</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="margin-0">{{Model.apping}}</h1>
+
+                            <small>&nbsp;</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>已放款</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="margin-0">{{Model.appMadeloan}}</h1>
+                            <small>&nbsp;</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mlr-20-20 ng-scope">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <div>
+                                <h3 class="font-bold no-margins">常用网址访问</h3>
+                            </div>
+                            <div>
+                                <canvas id="commonlinksChart" class="chart chart-bar" width="1275" height="200"
+                                        chart-data="data" chart-labels="labels" chart-series="series">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="dr-form" ng-init="initPage()">
+    <div class="dr-tb-header">
+        <div class="col col-sm-3">字典管理</div>
+        <div class="col col-sm-9 input-group">
+            <div class="form-inline pull-right">
+                <div class="form-group">
+                    <input type="text" class="form-control" style="width:280px" placeholder="请输入字典描述" ng-model="Model.description">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-click="queryGlobal()">查询</button>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-plr-15" ng-click="addGlobal()">
+                        <i class="fa fa-plus"></i>新建
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dr-tb-container">
+            <table  ng-table="tableParams" class="table sort-table table-striped text-muted table-striped">
+                <thead>
+                    <tr>
+                        <th style="width:5%;">id</th>
+                        <th style="width:7%;">名称</th>
+                        <th style="width:5%;">键值</th>
+                        <th style="width:5%;">扩展键值</th>
+                        <th style="width:5%;">字典类型</th>
+                        <th style="width:12%;">字典描述</th>
+                        <th style="width:5%;">创建者</th>
+                        <th style="width:10%;">创建时间</th>
+                        <th style="width:5%;">更新者</th>
+                        <th style="width:10%;">更新时间</th>
+                        <th style="width:15%;">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in Model.tableData.result">
+                        <td class="text-center">{{item.id}}</td>
+                        <td>{{item.name | limitFilter}}</td>
+                        <td>{{item.value | wordLimitFilter}}</td>
+                        <td>{{item.valueExt | wordLimitFilter}}</td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.description | wordLimitFilter}}</td>
+                        <td>{{item.createUser}}</td>
+                        <td>{{item.createTime | date: 'yyyy-MM-dd'}}</td>
+                        <td>{{item.updateUser}}</td>
+                        <td>{{item.updateTime | date: 'yyyy-MM-dd'}}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-secondary" ng-click="skipGlobal(item.id)">
+                                <i class="fa fa-sign-in" aria-hidden="true"></i>查看
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><i class="icon-icon-more" aria-hidden="true"></i>更多
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="" ng-click="editGlobal(item.id)">编辑</a>
+                                    </li>
+                                    <!--<li>
+                                        <a ng-confirm="delete(item.id)"
+                                           ng-confirm-message="删除操作不可恢复，确认要id为 “{{item.id}}” 数据项吗?"
+                                           href="" class="ng-isolate-scope">删除</a>
+                                    </li>-->
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="11" class="text-center text-bg">
+                            <div class="text-right" page-control record="Model.tableData" evname="dr.globalPagination"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+    </div>
+
+</div>

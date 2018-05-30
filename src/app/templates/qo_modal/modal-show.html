@@ -1,0 +1,15 @@
+<div class="modal-content">
+    <div class="modal-header dialog-header-confirm">
+        <button type="button" class="close" ng-click="cancel()">×</button>
+        <h4 class="modal-title ng-binding">询问</h4></div>
+    <div class="modal-body ng-binding" style="
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+">确定要更改此日期（{{model.date}}）的状态么?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ng-click="yes()">确定</button>
+        <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
+    </div>
+</div>

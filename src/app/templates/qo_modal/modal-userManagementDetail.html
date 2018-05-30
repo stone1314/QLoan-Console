@@ -1,0 +1,93 @@
+<div class="dr-form" style="width: 898px" ng-init="init()">
+    <div class="modal-body modal-box">
+        <div class="modal-content">
+            <form name="application" novalidate="novalidate" ng-submit="save()" class="form-horizontal">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row dashboard-header">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="model.NAME" disabled='disabled' placeholder="姓名" />
+                            </div>
+                            <label class="col-sm-1 control-label">域账号</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="model.USER_ACCOUNT" disabled='disabled' required placeholder="域账号" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">部门</label>
+                            <div class="col-sm-4">
+                                <select disabled="disabled" id="selDep"
+                                        chosen
+                                        width=256
+                                        ng-model="model.USER_ACCOUNT_DEPARTMENT_ID"
+                                        data-placeholder="请选择部门"
+                                        allow-single-deselect="true"
+                                        disable-search="true"
+                                        ng-options="s.departmentCode as s.departmentName for s in model.departments">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <label class="col-sm-1 control-label">城市</label>
+                            <div class="col-sm-4">
+                                <select disabled="disabled"
+                                        chosen
+                                        width=256
+                                        ng-model="model.USER_COMPANY_ID"
+                                        data-placeholder="请选择城市"
+                                        allow-single-deselect="true"
+                                        disable-search="true"
+                                        ng-options="s.DATACODE as s.DATANAME for s in model.citylist">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">身份证号</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="model.ID_NO" disabled='disabled' placeholder="身份证号" />
+                            </div>
+                            <label class="col-sm-1 control-label">手机号</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-model="model.TELPHONE" disabled='disabled' required placeholder="手机号" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-default" ng-click="resetPassword()">重置密码</button>
+                                <input type="hidden" ng-model="model.SALT">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">启用/禁用</label>
+                            <div class="col-sm-9">
+                                <!--<div ng-model="model.IS_ACTIVED" input-switchery></div>-->
+                                <lable class='label label-danger' ng-if=model.IS_ACTIVED==0>已禁用</lable>
+                                <lable class='label label-success' ng-if=model.IS_ACTIVED==1>已启用</lable>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">说明</label>
+                            <div class="col-sm-9">
+                                <textarea rows="5" class="form-control" ng-model="model.DESCRIPTION" placeholder="说明"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default" ng-click="save()">保存用户信息</button>
+                    <button type="button" class="btn btn-default" ng-click="close()">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,303 @@
+<div class="modal-content"  >
+    <form name="application" novalidate="novalidate" ng-submit="save()" class="form-horizontal ng-pristine ng-valid">
+        <div class="modal-header">
+            <h4 class="modal-title">客户详情</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row dashboard-header">
+                <div class="form-group-title first">
+                    <label>基本信息</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">姓名</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppCustomers[0].name}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">客户编号</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppCustomers[0].id}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">身份证号</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppCustomers[0].idNo}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">证件图片</label>
+                    <div class="col-sm-4">
+                        <div class="col-sm-4">
+                            <a ng-show="model.PRE_APP_CUSTOMER[0].CERT_PIC_FRONT != null"
+                               href="/preappcustomer/download?uri=" title="点击图片下载" class="ng-hide"><img height="40"></a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a ng-show="model.PRE_APP_CUSTOMER[0].CERT_PIC_SELFIE != null"
+                               href="/preappcustomer/download?uri=" title="点击图片下载" class="ng-hide"><img height="40"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">年龄</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppCustomers[0].age}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">性别</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppCustomers[0].age=="genderM"?"男":"女"}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">婚姻状况</label>
+                    <div class="col-sm-10">
+                        <label class="control-label ng-binding">{{UserInfo.preAppCustomers[0].marrage=="marrageSingle"?"未婚":"已婚"}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+
+
+                <div class="form-group-title">
+                    <label>联系信息</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">手机号</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppCustomers[0].mobile1}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">备用手机号</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppCustomers[0].mobile2}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">现居住地址</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppCustomers[0].residentAddress}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">微信昵称</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppCustomers[0].nickName}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+
+                <div class="form-group-title">
+                    <label>联系人信息</label>
+                </div>
+                <div id="customer_contact_info" ng-repeat=" data in UserInfo.preAppContacts">
+                    <div class="form-group" ng-if="data.contactProperty=='CONTACT_RELATIVE1'">
+                        <label class="col-sm-2 control-label"><span>家庭联系人1</span>姓名</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.name}}</label>
+                        </div>
+                        <label class="col-sm-2 control-label">关系</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.relationship|relationShip}}</label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed" ng-if="data.contactProperty=='CONTACT_RELATIVE1'"></div>
+
+
+                    <div class="form-group" ng-if="data.contactProperty=='CONTACT_RELATIVE1'">
+                        <label class="col-sm-2 control-label">手机号码</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.mobile}}</label>
+                        </div>
+                        <label class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.relationshipMemo}}</label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed" ng-if="data.contactProperty=='CONTACT_RELATIVE1'"></div>
+
+
+                    <div class="form-group" ng-if="data.contactProperty=='CONTACT_RELATIVE2'">
+                        <label class="col-sm-2 control-label"><span>家庭联系人2</span>姓名</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.name}}</label>
+                        </div>
+                        <label class="col-sm-2 control-label">关系</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.relationship|relationShip}}</label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed" ng-if="data.contactProperty=='CONTACT_RELATIVE2'"></div>
+                    <div class="form-group" ng-if="data.contactProperty=='CONTACT_RELATIVE2'">
+                        <label class="col-sm-2 control-label">手机号码</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.mobile}}</label>
+                        </div>
+                        <label class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.relationshipMemo}}</label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed" ng-if="data.contactProperty=='CONTACT_RELATIVE2'"></div>
+
+
+                    <div class="form-group" ng-if="data.contactProperty=='CONTACT_JOB_CERT'">
+                        <label class="col-sm-2 control-label"><span>工作证明人</span>姓名</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.name}}</label>
+                        </div>
+                        <label class="col-sm-2 control-label">关系</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.relationship|relationShip}}</label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed" ng-if="data.contactProperty=='CONTACT_JOB_CERT'"></div>
+                    <div class="form-group" ng-if="data.contactProperty=='CONTACT_JOB_CERT'">
+                        <label class="col-sm-2 control-label">手机号码</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.mobile}}</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" ng-if="data.contactProperty=='CONTACT_OTHER'">
+                        <label class="col-sm-2 control-label"><span>其它联系人</span>姓名</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.name}}</label>
+                        </div>
+                        <label class="col-sm-2 control-label">关系</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.relationship|relationShip}}</label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed" ng-if="data.contactProperty=='CONTACT_OTHER'"></div>
+                    <div class="form-group" ng-if="data.contactProperty=='CONTACT_OTHER'">
+                        <label class="col-sm-2 control-label">手机号码</label>
+                        <div class="col-sm-4">
+                            <label class="control-label ng-binding">{{data.mobile}}</label>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="hr-line-dashed"></div>
+                <div class="form-group-title">
+                    <label>工作单位</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">公司名称</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppJobs[0].comName}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">公司电话</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppJobs[0].comTelNo}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">身份/职位</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppJobs[0].jobTitle}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">占股比例</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding"></label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">入职时间</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppJobs[0].dateJoin|date:
+                            'yyyy-MM-dd'}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">公司地址</label>
+                    <div class="col-sm-4">
+                        <label class="control-label readonly ng-binding"> {{UserInfo.preAppJobs[0].comAddress}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group-title">
+                    <label>还款银行卡</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">开户名称</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppBankCards[0].bankName}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">户名</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppBankCards[0].bankAccountName}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">账号</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppBankCards[0].bankAccount}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">预留手机</label>
+                    <div class="col-sm-4">
+                        <label class="control-label ng-binding">{{UserInfo.preAppBankCards[0].bankMobile}}</label>
+                    </div>
+                </div>
+
+                <div class="hr-line-dashed"></div>
+                <div class="form-group-title">
+                    <label>认证信息</label>
+                </div>
+                <div class="row ng-hide" ng-show="Certifies.length == 0" style="text-align:center;padding:100px;">
+                    暂无认证信息
+                </div>
+                <div class="clients-list" ng-show="Certifies.length != 0">
+                    <ul class="nav nav-tabs">
+                        <li class="{{$index?'':'active'}}" ng-repeat="data in Certifies">
+                            <a data-toggle="tab" href="#tab-{{$index}}" ng-click="getTabState($index)" aria-expanded="true" class="ng-binding">
+                                {{data.name}} </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <!-- ngRepeat: c in model.crediteds   -->
+                        <div  id="#tab-{{$index}}" class="{{Model.Tab==$index?'tab-pane active':'tab-pane'}}" ng-repeat="da in Certifies"
+                             style="height:auto !important;">
+                            <div style="padding:50px 26px;">
+                                <div class="ng-scope" ng-repeat="certify in da.certifies">
+
+                                    <div class="form-group">
+                                        <div class="col-sm-2">
+                                            <label class="control-label">
+                                                <b class="ng-binding">{{certify.preAppCode}}</b></label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="control-label ng-binding" ng-if="certify.certifyType!="HouseFund">{{certify.certifyAccount}} </label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                              <label class="control-label green">{{certify.certifyStatus|CertifyMap}}</label>
+
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="control-label ng-binding"> </label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                             <label class="control-label ng-binding">{{certify.createdTime}}</label>
+                                         </div>
+
+                                    </div>
+                                    <div class="hr-line-dashed" id="line"></div>
+                                </div><!-- end ngRepeat: certify in c.Certifies -->
+                            </div>
+                        </div><!-- end ngRepeat: c in model.crediteds -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="cancel()">关闭</button>
+        </div>
+    </form>
+</div>

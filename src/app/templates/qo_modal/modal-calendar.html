@@ -1,0 +1,22 @@
+<div class="modal-content">
+    <form name="application" novalidate="novalidate" ng-submit="save()" class="form-horizontal ng-pristine ng-valid ng-valid-required">
+        <div class="modal-header">
+            <h4 class="modal-title ng-binding">选择要初始化的年</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row dashboard-header">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">年份</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control ng-valid ng-valid-required ng-touched" ng-model="model.YEAR" required="" placeholder="年份">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-default">确 定</button>
+
+            <button type="button" class="btn btn-default" ng-click="cancel()">关闭</button>
+        </div>
+    </form>
+</div>

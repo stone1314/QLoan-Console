@@ -1,0 +1,61 @@
+<div class="list-group dr-form ng-scope" ng-init="init()">
+
+    <h3 class="list-group-item-heading box-shadowbottom">
+        产品管理
+    </h3>
+
+    <div class="list-group-item single-channel-quary">
+        <div class="form-inline">
+
+            <div class="form-group">
+                <input type="text" class="form-control " style="width: 200px"
+                       placeholder="产品名称" ng-model="viewModel.Name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control  " style="width: 200px"
+                       placeholder="产品期数" ng-model="viewModel.Terms">
+            </div>
+            <div class="form-group">
+                <div ng-dropdown-multiselect="" options="dropdowndata" selected-model="dropdownmodel" extra-settings="dropdownsettings"
+                     translation-texts="dropdowncustomTexts" ></div>
+            </div>
+            <div class="form-group">
+                <select class="form-control page-select" style="width: 200px"
+                        ng-model="viewModel.dropDown.city">
+                    <option value="">请选择申请城市</option>
+                    <option ng-repeat="item in viewModel.dropDown.cities" value="{{item.cityName}}">
+                        {{item.cityName}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="query()">查 询</button>
+                <button class="btn btn-default" ng-click="reset()">重 置</button>
+                <button class="btn btn-default" ng-click="view(0)">查 看</button>
+                <button class="btn btn-default" ng-click="active()">启用/禁用</button>
+                <button class="btn btn-default" ng-click="synchronization()">同步产品信息</button>
+                <button class="btn btn-warning" ng-click="skip()">设置关联部门</button>
+            </div>
+            <div class="form-group float-lg-right mt-15">
+<!--                <a href="javascript:void(0);" class="more_filter_arrow" ng-click="more()">+更多筛选条件</a>-->
+            </div>
+        </div>
+        <div class="form-inline ">
+            <div class="line" ng-show="viewModel.show">
+      <!--          <div class="form-group">
+
+                    <div ng-dropdown-multiselect="" options="dropdowndata" selected-model="dropdownmodel" extra-settings="dropdownsettings"
+                         translation-texts="dropdowncustomTexts" ></div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group-item single-channel-body">
+        <div class="dr-tb-container   ">
+            <table model="setTableOptions" id="ngProduct" angular-table
+                   class="table table-hover "></table>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+<div class="list-group dr-form">
+    <h3 class="list-group-item-heading box-shadowbottom">
+        工作日历
+    </h3>
+    <div class="list-group-item single-channel-quary">
+        <div class="form-inline">
+            <div class="form-group">
+                <label class="sr-only">申请时间</label>
+                <input type="text"
+                       class="form-control"
+                       style="width: 200px" ng-click="open()" uib-datepicker-popup="yyyy-MM-dd" ng-model="model.date"
+                       input-date=""
+                       placeholder="申请日期起" is-open="popup.opened">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" ng-click="getDate()">转 跳</button>
+                <button class="btn btn-default" ng-click="initialYearCategory()">初始化年日历</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group-item single-channel-body">
+        <hr>
+        <div class="dr-tb-container">
+            <div id='calendar' class="wd-800" style="margin-top: 20px;height:100%;"></div>
+        </div>
+    </div>
+</div>

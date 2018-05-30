@@ -1,0 +1,517 @@
+<div class="dr-form" style="width: 950px;" ng-init="init()">
+    <div class="modal-body ">
+        <div class="modal-content">
+            <form name="application" novalidate="novalidate" ng-submit="save()" class="form-horizontal">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#basicInfo" data-toggle="tab">基本信息</a>
+                        </li>
+                        <li>
+                            <a href="#customerInfo" data-toggle="tab">客户信息</a>
+                        </li>
+                        <li>
+                            <a href="#productInfo" data-toggle="tab">产品信息</a>
+                        </li>
+                        <li>
+                            <a href="#jobInfo" data-toggle="tab">职业信息</a>
+                        </li>
+                        <li>
+                            <a href="#payment" data-toggle="tab">收支情况</a>
+                        </li>
+                        <li>
+                            <a href="#exclusive" data-toggle="tab">专案资料</a>
+                        </li>
+                        <li>
+                            <a href="#management" data-toggle="tab">经营信息</a>
+                        </li>
+                        <li>
+                            <a href="#bankCard" data-toggle="tab">银行卡信息</a>
+                        </li>
+                        <li>
+                            <a href="#salesPhoto" data-toggle="tab">销售合影</a>
+                        </li>
+
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="basicInfo">
+                            <div class="row dashboard-header">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">预申请号</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CODE}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">预申请结果</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_STATUS_NAME}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">申请号</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.APP_CODE}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">申请状态</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.APP_STATUS_NAME}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">预申请时间</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.CREATED_TIME | date:
+                                            'yyyy-MM-dd'}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">预申请城市</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.CITY_NAME}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">借款用途</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_LOANS[0].loanPurpose}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">借款用途其他</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_LOANS[0].memoOfLoanPurposeOther}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">可接受月还款额</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_LOANS[0].payAmtMonthlyAcceptable}}元</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="customerInfo">
+                            <div class="row dashboard-header">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">客户姓名</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].name}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">客户身份证号</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].idNo}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">身份证正面</label>
+                                    <div class="col-sm-4">
+                                        <img ng-src="{{model.PRE_APP_CUSTOMER[0].customerIdcardFrontUrl }}">
+                                    </div>
+                                    <label class="col-sm-2 control-label">身份证背面</label>
+                                    <div class="col-sm-4">
+                                        <img ng-src="{{model.PRE_APP_CUSTOMER[0].customerIdcardBackUrl }}">
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">常用手机号码</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].mobile1}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">备用手机号码</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].mobile2}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">婚姻状况</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].marrage}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">邮箱</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].email}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">教育程度</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].education}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">居住地址</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].residentAddress}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">户籍地址</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].registerAddress}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><span style="color: #47a9ff;font-size: 12px">联系人1</span>姓名</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT1.name }}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">关系</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT1.relationship }}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">手机号码</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT1.mobile }}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">备注</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT1.relationshipMemo }}</label>
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><span style="color: #47a9ff;font-size: 12px">联系人2</span>姓名</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT2.name }}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">关系</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT2.relationship }}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">手机号码</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT2.mobile }}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">备注</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT2.relationshipMemo }}</label>
+                                    </div>
+                                </div>
+
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><span style="color: #47a9ff;font-size: 12px">工作证明人</span>姓名</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT_JOB.name }}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">关系</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT_JOB.relationship }}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">手机号码</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT_JOB.mobile }}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">部门</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT_JOB.comDept }}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">职位</label>
+                                    <div class="col-sm-4">
+                                        <label class="control-label ng-binding">{{ CONTACT_JOB.comPosition }}</label>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="productInfo">
+                            <div class="row dashboard-header">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">申请产品</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.productName}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">申请金额</label>
+                                    <div class="col-sm-2">
+                                        <label class=" control-label">{{model.PRE_APP_LOANS[0].applyAmt}}</label>
+                                    </div>
+                                    <label class="col-sm-2 "
+                                           ng-show="model.PRODUCT_CHANGED_STATE != 0 && model.APP_CODE!=null">
+                                        <button type="button" class="btn btn-default" ng-click="productChangeHistory()">
+                                            产品变更历史
+                                        </button>
+                                    </label>
+
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">申请期限</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_LOANS[0].terms}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">是否夸客推荐</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.changeProductFlag|YNFilter}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="jobInfo">
+                            <div class="row dashboard-header">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">公司名称</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].comName}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label"></label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">公司固话</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].comTelNo}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">所属行业</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].comIndustry}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">公司类型/性质</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].comType}}</label>
+                                        <!--comProperty-->
+                                    </div>
+                                    <label class="col-sm-2 control-label">公司类型/性质-其他</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].comTypeOther}}</label>
+                                        <!--comPropertyOther-->
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">公司邮箱</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].email}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">入职时间</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].dateJoin | date:
+                                            'yyyy-MM-dd'}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">职位</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].comPosition}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">职位-其他</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].comPositionOther}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">职称</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].jobTitle}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">公司地址</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].comAddress}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">派遣公司名称</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].dispatchCompany}}</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="payment">
+                            <div class="row dashboard-header">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">每月收入</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].incomeMonthlyFromJob}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">负债</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].liabilities}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">是否缴纳社保</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].socialsecurity
+                                            }}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">社保缴纳频率</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].securityfrequency}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">是否缴纳公积金</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].accumulationfund}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">公积金缴纳频率</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].accumulationfrequency}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="tab-pane fade" id="exclusive">
+                            <div class="row dashboard-header">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">贷款金额</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].mortgageAmtTotal}}万元</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">月供</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].mortgageAmtByMonth}}元</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">按揭/抵押房产地址</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_CUSTOMER[0].houseResidentProvince}}</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="management">
+                            <div class="row dashboard-header">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">经营身份</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].station2Com}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">经营身份-其他</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].station2ComOther}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">占股比例</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].shareRatio}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">公司注册时间</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].dateComRegister | date:
+                                            'yyyy-MM-dd' }}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">注册资本</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].comRegisterCapitalAmt}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">企业员工数</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_JOB[0].comPersons}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="bankCard">
+                            <div class="row dashboard-header">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">开户行名称</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_BANKCARDS[0].bankName}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">开户行所在城市</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">
+                                            {{model.PRE_APP_BANKCARDS[0].bankCity=='市辖区'?
+                                            model.PRE_APP_BANKCARDS[0].bankProvince:model.PRE_APP_BANKCARDS[0].bankCity}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">所属支行</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_BANKCARDS[0].bankSub}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">户名</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_BANKCARDS[0].bankAccountName}}</label>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">账号</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_BANKCARDS[0].bankAccount}}</label>
+                                    </div>
+                                    <label class="col-sm-2 control-label">预留手机号</label>
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">{{model.PRE_APP_BANKCARDS[0].bankMobile}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="salesPhoto">
+                            <div class="row dashboard-header">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">销售合影</label>
+                                    <div class="col-sm-9">
+                                        <img ng-src="{{model.PRE_APP_CUSTOMER[0].salesCustomerPhotoUrl}}">
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="close()">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

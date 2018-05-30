@@ -1,0 +1,118 @@
+<div class="list-group dr-form" ng-init="initPage()">
+    <h3 class="list-group-item-heading box-shadowbottom">
+        用户信息查询
+    </h3>
+    <div class="list-group-item single-channel-quary">
+        <div class="form-inline">
+            <div class="div-display-box">
+                <div class="form-group">
+                    <select ng-model="Model.query.channel" style="width: 130px;">
+                        <option value="">--请选择渠道--</option>
+                        <option ng-repeat="item in Model.dropDown.channel"
+                                value="{{item.code}}" >{{item.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select ng-model="Model.query.appMarket" style="width: 130px;">
+                        <option value="">--应用市场--</option>
+                        <option ng-repeat="item in Model.dropDown.appMarket"
+                                value="{{item.code}}" >{{item.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select ng-model="Model.query.salesArea" style="width: 140px;" ng-change="changeSalesArea(Model.query.salesArea)">
+                        <option value="">--营业部区域--</option>
+                        <option ng-repeat="item in Model.dropDown.salesArea track by $index"
+                                value="{{item.code}}" >{{item.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-left:10px;">
+                    选择门店：
+                </div>
+                <div class="form-group">
+                    <select ng-model="Model.query.departmentCode"  style="width: 120px;">
+                        <option value="">--请选择门店--</option>
+                        <optgroup label="{{x.name}}" value="{{x.code}}" ng-repeat="x in Model.dropDown.salesCity track by $index">
+                            <option value="{{y.code}}" ng-repeat="y in x.nextList track by $index">
+                                {{y.name}}
+                            </option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-left:10px;">
+                    注册时间区间：
+                </div>
+                <div class="form-group">
+                    <div class="real-time data-picker">
+                        <date-range-picker min-date="Model.startDate" max-date="Model.endDate" on-ok="Model.regTimeChange()"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control ser_input" style="width:220px" placeholder="请输入姓名或手机号" ng-model="Model.searchKeywords" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary ser_input" ng-click="query()">查询</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="dr-tb-container overflow-x-y">
+              <div class="table-responsive" style="overflow: visible;">
+                   <table class="table table-130 table-striped text-muted table-striped">
+                       <thead>
+                           <tr>
+                                 <th style="width:4%;">姓名</th>
+                                 <th style="width:5%;">登录手机号</th>
+                                 <th style="width:5%;">注册时间</th>
+                                 <th style="width:4%;">认证状态</th>
+                                 <th style="width:5%;">认证手机号</th>
+                                 <th style="width:5%;">渠道</th>
+                                 <th style="width:5%;">应用市场</th>
+                                 <th style="width:5%;">营业部区域</th>
+                                 <th style="width:5%;">营业部城市</th>
+                                 <th style="width:5%;">销售姓名</th>
+                                 <th style="width:6%;">销售编号</th>
+                                 <th style="width:5%;">最后登录时间</th>
+                                 <th style="width:7%;">查看详细</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                            <tr  class="editable-row" ng-repeat="item in Model.userInfoList.result">
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.loginMobile }}</td>
+                                <td>{{ item.registerTime  | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+                                <td>{{ item.certifyStatus| certifyStatusFilter }}</td>
+                                <td>{{ item.certifyMobile }}</td>
+                                <td><span ng-if="item.channelType=='0'">{{ item.channelName }}</span></td>
+                                <td><span ng-if="item.channelType=='1'">{{ item.channelName }}</span></td>
+                                <td>{{ item.applyAreaName }}</td>
+                                <td>{{ item.applyCityName }}</td>
+                                <td>{{ item.salesName }}</td>
+                                <td>{{ item.salesNo }}</td>
+                                <td>{{ item.lastLoginTime   | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+                                <td style="text-align:left">
+                                    <div  class="btn-group" >
+                                        <button type="button" class="btn btn-secondary dropdown-toggle"
+                                                data-toggle="dropdown">
+                                            更多<i class="icon-icon-more" aria-hidden="true"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href ng-click="OpenIdentityInfo(item.id)">身份信息</a></li>
+                                            <li><a href ng-click="OpenBasicsInfo(item.id)">基本信息</a></li>
+                                            <li><a href ng-click="OpenContactsInfo(item.id)">联系人信息</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                       </tbody>
+                       <tfoot>
+                       </tfoot>
+                   </table>
+              </div>
+            <div class="text-right" style="margin-top:30px;" page-control record="Model.userInfoList" evname="dr.userPagination"></div>
+        </div>
+</div>
+

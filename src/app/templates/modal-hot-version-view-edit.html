@@ -1,0 +1,138 @@
+<div class="dr-form">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">
+            {{viewModel.pageTitle}}
+        </h4>
+    </div>
+    <div class="modal-body modal-box">
+        <form class="form-horizontal dr-form" role="form">
+            <div class="panel panel-link">
+                <div class="panel-body dr_baseInfo">
+                    <div class="form-group" ng-if="viewModel.pageType === 'view'">
+                        <label class="col-sm-3 control-label">ID：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text"
+                                   ng-readonly="true"
+                                   ng-model="viewModel.postData.id" maxlength="50" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="viewModel.pageType === 'view'">
+                        <label class="col-sm-3 control-label">DeploymentKey：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text"
+                                   ng-readonly="true"
+                                   ng-model="viewModel.postData.deploymentKey" maxlength="50" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">下载地址：</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control msg_textarea2" rows="2" maxlength="400"
+                                      ng-readonly="viewModel.pageType === 'view'"
+                                      ng-model="viewModel.postData.downloadURL" required>
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="viewModel.pageType === 'view'">
+                        <label class="col-sm-3 control-label">appVersion：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text"
+                                   ng-readonly="true"
+                                   ng-model="viewModel.postData.appVersion" maxlength="50" required/>
+                            </input>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">标签：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text"
+                                      ng-readonly="viewModel.pageType === 'view'"
+                                      ng-model="viewModel.postData.label" maxlength="50" required/>
+                            </input>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="viewModel.pageType === 'view'">
+                        <label class="col-sm-3 control-label">创建时间：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text"
+                                   ng-readonly = "true"
+                                   ng-model="viewModel.postData.createTime" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="viewModel.pageType === 'view'">
+                        <label class="col-sm-3 control-label">更新时间：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text"
+                                   ng-readonly = "true"
+                                   ng-model="viewModel.postData.updateTime" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">描述：</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control msg_textarea2" rows="3" maxlength="400"
+                                      placeholder="该输入描述内容"
+                                      ng-readonly="viewModel.pageType === 'view'"
+                                      ng-model="viewModel.postData.description" required="">
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="viewModel.pageType === 'view'">
+                        <label class="col-sm-3 control-label">下载次数：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text"
+                                   ng-readonly="true"
+                                   ng-model="viewModel.postData.downloadTimes" />
+                        </div>
+                    </div>
+
+                   <div class="form-group" ng-if="viewModel.pageType === 'view'">
+                        <label class="col-sm-3 control-label">isUpdate：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text"
+                                   ng-readonly="true"
+                                   ng-model="viewModel.postData.isUpdate" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="viewModel.pageType === 'view'">
+                        <label class="col-sm-3 control-label">包hash值：</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text"
+                                   ng-readonly="true"
+                                 ng-model="viewModel.postData.packetHashValue" maxlength="50" required/>
+
+                            </input>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="viewModel.pageType === 'view'">
+                        <label class="col-sm-3 control-label">状态：</label>
+                        <div class="col-sm-8">
+                           <input class="form-control" type="text"
+                                   ng-readonly="true"
+                                   ng-model="viewModel.postData.isAvailable" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <div>
+                        <button class="btn btn-secondary btn-plr-35" type="button" ng-click="cancel()">关闭</button>
+                        <button class="btn btn-primary btn-plr-35" type="button" ng-click="ok()"
+                                ng-if="viewModel.pageType === 'edit'">修改</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

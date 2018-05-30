@@ -1,0 +1,16 @@
+# gitignore
+
+
+rev/
+dist/
+build/
+target/
+.log/
+.gradle/
+.settings/
+node_modules/
+.project
+.classpath
+
+# IDE
+.idea/

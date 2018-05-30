@@ -1,0 +1,74 @@
+<div class="list-group dr-form ng-scope" ng-init="initPage()">
+
+    <h3 class="list-group-item-heading box-shadowbottom">
+        HRM用户管理
+    </h3>
+
+    <div class="list-group-item single-channel-quary">
+        <div class="form-inline">
+
+            <div class="form-group">
+                <label class="sr-only">姓名</label>
+                <input type="text" ng-model="domain.NAME" placeholder="姓名" class="form-control ms-width-150">
+            </div>
+            <div class="form-group">
+                <label class="sr-only">邮箱</label>
+                <input type="text" ng-model="domain.EMAIL" placeholder="邮箱" class="form-control ms-width-150">
+            </div>
+            <div class="form-group">
+                <label class="sr-only">身份证号</label>
+                <input type="text" ng-model="domain.ID_NO" placeholder="身份证号" class="form-control ms-width-150">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="query()">查 询 </button>
+                <button class="btn btn-default" ng-click="reset()">重 置 </button>
+                <button class="btn btn-default" ng-click="additional()">添 加 </button>
+                <button class="btn btn-default" ng-click="modify()">修 改 </button>
+                <button class="btn btn-danger" ng-click="remove()">删 除 </button>
+            </div>
+            <div class="form-group float-lg-right mt-15">
+                <a href="javascript:void(0);" class="more_filter_arrow" ng-click="more()">+更多筛选条件</a>
+            </div>
+        </div>
+        <div class="form-inline ">
+            <div class="line" ng-show="viewModel.show">
+                <div class="form-group">
+                    <select  ng-model="domain.DEPARTMENT_CODE" class="form-control page-select"  style="width: 200px;">
+                        <option value="">请选择部门</option>
+                        <option ng-repeat="item in model.departments"
+                                value="{{item.departmentCode}}">{{item.departmentName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">入职时间</label>
+                    <!--<input type="text" class="form-control laydate-icon"  input-date placeholder="入职时间" style="width:200px" />-->
+                    <div class="col-xs-9">
+                        <div class="form-inline">
+                            <div class="form-group m-0 dr-date-group">
+                                <i class="icon-icon-schedule"></i>
+                                <input
+                                        type="text"
+                                        class="form-control dr-date"
+                                        ng-click="open()"
+                                        uib-datepicker-popup="yyyy-MM-dd"
+                                        format="yyyy-MM-dd HH:mm:ss"
+                                        ng-disabled="viewModel.pageType === 'view'"
+                                        is-open="popup.opened" placeholder="入职时间"
+                                        ng-model="domain.JOIN_TIME"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group-item single-channel-body">
+        <div class="dr-tb-container   ">
+            <table model="setTableOptions" id="ngUser" angular-table class="table table-hover ">
+            </table>
+        </div>
+    </div>
+
+</div>

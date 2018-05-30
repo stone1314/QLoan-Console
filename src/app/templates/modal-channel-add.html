@@ -1,0 +1,147 @@
+<div class="dr-form">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">编辑基本信息</h4>
+    </div>
+    <div class="modal-body modal-box">
+        <form class="form-horizontal dr-form" role="form">
+            <div class="panel panel-link">
+                <div class="panel-body dr_baseInfo">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">渠道ID<span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <input class="form-control" type="text" placeholder="请输入渠道ID"
+                                   ng-model="viewModel.postData.channelId" maxlength="50" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">渠道名称<span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <input class="form-control" type="text" placeholder="请输入渠道名称"
+                                   ng-model="viewModel.postData.channelName" maxlength="50" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">渠道类型<span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <select class="form-control" ng-model="viewModel.postData.channelType" required>
+                                <option value="">--请选择--</option>
+                                <option ng-repeat="item in viewModel.dropDown.channelTypeList"
+                                        ng-selected="viewModel.postData.channelType==item.dataCode"
+                                        value="{{item.dataCode}}">
+                                    {{item.dataName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" style="text-align: left">有效周期<span style="color:red">*</span></label>
+                        <div class="col-xs-9" style="margin-bottom:15px;">
+                            <div class="form-inline">
+                                <div class="form-group m-0 dr-date-group">
+                                    <i class="icon-icon-schedule"></i>
+                                    <input
+                                            type="text"
+                                            class="form-control dr-date"
+                                            ng-click="open()"
+                                            uib-datepicker-popup="yyyy-MM-dd"
+                                            format="yyyy-MM-dd HH:mm:ss"
+                                            ng-model="viewModel.postData.startTime"
+                                            is-open="popup.opened"/>
+                                </div>
+                                <div class="form-group m-0">
+                                    -
+                                </div>
+                                <div class="form-group m-0 dr-date-group ">
+                                    <i class="icon-icon-schedule"></i>
+                                    <input
+                                            type="text"
+                                            class="form-control dr-date"
+                                            ng-click="open2()"
+                                            uib-datepicker-popup="yyyy-MM-dd"
+                                            format="yyyy-MM-dd HH:mm:ss"
+                                            ng-model="viewModel.postData.endTime"
+                                            is-open="popup2.opened"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                        <label class="col-sm-3 control-label">渠道状态<span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                            <label class="radio-inline">
+                                <input type="radio" name="isActive" ng-required="true"
+                                       ng-model="viewModel.postData.isActive" ng-value="1" checked="checked">启用
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="isActive" ng-required="true"
+                                       ng-model="viewModel.postData.isActive" ng-value="0">禁用
+                            </label>
+                            &lt;!&ndash;
+                            <select class="form-control" ng-model="viewModel.postData.isActive" required>
+                            <option value="">&#45;&#45;请选择&#45;&#45;</option>
+                            <option ng-repeat="item in viewModel.dropDown.channelStatusList"
+                            ng-selected="viewModel.postData.isActive==item.dataCode"
+                            value="{{item.dataCode}}">
+                            {{item.dataName}}
+                            </option>
+                            </select>
+                            &ndash;&gt;
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">渠道状态<span style="color:red">*</span></label>
+                        <div class="col-sm-5">
+                                <label class="radio-inline" ng-repeat="item in viewModel.dropDown.channelStatusList">
+                                    <input type="radio" name="isActive"
+                                           ng-required="true"
+                                           value="{{item.dataCode}}"
+                                           ng-model="viewModel.postData.isActive"
+                                    >
+                                    {{item.dataName}}
+                                </label>
+                        </div>
+                    </div>
+
+                    <!--<div ng-if="viewModel.pageType === 'view'">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建人</label>
+                            <div class="col-sm-5">
+                                <input class="form-control" type="text" disabled
+                                       ng-model="viewModel.postData.createUser"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建时间</label>
+                            <div class="col-sm-5">
+                                <input class="form-control" type="text" disabled
+                                       ng-model="viewModel.postData.createTime"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">修改人</label>
+                            <div class="col-sm-5">
+                                <input class="form-control" type="text" disabled
+                                       ng-model="viewModel.postData.updateUser"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">修改时间</label>
+                            <div class="col-sm-5">
+                                <input class="form-control" type="text" disabled
+                                       ng-model="viewModel.postData.updateTime"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+                <div class="panel-footer text-center">
+                    <div>
+                        <button class="btn btn-primary btn-plr-35" type="button" ng-click="ok()">保存</button>
+                        <button class="btn btn-secondary btn-plr-35" type="button" ng-click="cancel()">取消</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

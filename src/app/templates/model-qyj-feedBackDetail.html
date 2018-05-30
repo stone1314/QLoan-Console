@@ -1,0 +1,42 @@
+<div class="modal-content">
+    <form name="application" novalidate="novalidate"   class="form-horizontal ng-pristine ng-valid">
+        <div class="modal-header">
+            <h4 class="modal-title">意见反馈详情</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row dashboard-header">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">意见编号</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.id}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">用户名</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.name}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">手机号　　</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.mobile}}</label>
+                    </div>
+                    <label class="col-sm-2 control-label">创建时间　　</label>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{Model.createTime| date: 'yyyy-MM-dd HH:mm:ss'}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">反馈内容</label>
+                    <div class="col-sm-9">
+                        <textarea rows="5" class="form-control ng-valid" ng-model="Model.content" placeholder="说明" readonly="readonly" style="resize:none"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="cancel()">关闭</button>
+        </div>
+    </form>
+</div>

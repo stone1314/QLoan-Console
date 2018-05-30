@@ -1,0 +1,27 @@
+<div class="list-group dr-form">
+    <h3 class="list-group-item-heading box-shadowbottom">
+        常用地址
+    </h3>
+    <div class="list-group-item single-channel-quary">
+        <form role="form" class="form-inline ng-pristine ng-valid">
+            <div class="form-group">
+                <label class="sr-only">网站名称</label>
+                <input type="text"  placeholder="网站名称" ng-model="Model.Name" class="form-control ms-width-150 ng-valid">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="query()">查 询 </button>
+                <button class="btn btn-default" ng-click="reset()">重 置 </button>
+                <button class="btn btn-default" ng-click="add()">添 加 </button>
+                <button class="btn btn-default" ng-click="update()">修 改 </button>
+                <button class="btn btn-danger" ng-click="remove()">删 除 </button>
+                <button class="btn btn-warning" ng-click="saveSort()">保存排序 </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="list-group-item single-channel-body">
+        <div class="dr-tb-container">
+            <table model="setTableOptions" id="ngCommonLinks" angular-table="CommonLinks"     class="table table-hover "></table>
+        </div>
+    </div>
+</div>
